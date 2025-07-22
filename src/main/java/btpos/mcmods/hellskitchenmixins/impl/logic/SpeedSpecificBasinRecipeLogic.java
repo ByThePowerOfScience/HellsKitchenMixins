@@ -1,6 +1,6 @@
 package btpos.mcmods.hellskitchenmixins.impl.logic;
 
-import btpos.mcmods.hellskitchenmixins.impl.objects.SpeedSpecificBasinRecipe;
+import btpos.mcmods.hellskitchenmixins.ducks.ISpeedSpecificBasinRecipe;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -8,10 +8,13 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 public final class SpeedSpecificBasinRecipeLogic {
     
     /**
-     * @return True if this recipe is satisfied or not applicable
+     * @return True if this recipe is ok to proceed with checks
      * @see btpos.mcmods.hellskitchenmixins.mixin.create.MBasinRecipe#checkRPMRecipes
      */
-    public static boolean checkBasinRecipe(BasinBlockEntity basin, SpeedSpecificBasinRecipe recipe) {
+    public static boolean checkBasinRecipe(BasinBlockEntity basin, ISpeedSpecificBasinRecipe recipe) {
+        if (!recipe.hellskitchen$supportsSpeedRequirement())
+            return true;
+        
         // check RPM of the blockentity above it
         var level = basin.getLevel();
         if (level == null)
@@ -22,7 +25,7 @@ public final class SpeedSpecificBasinRecipeLogic {
             return true; // pass
         }
         
-        return recipe.minSpeed <= kbe.getSpeed() && kbe.getSpeed() <= recipe.maxSpeed;
+        return recipe.hellskitchen$speedInRange(kbe.getSpeed());
     }
     
     

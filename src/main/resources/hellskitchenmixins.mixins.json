@@ -6,6 +6,7 @@
   "refmap": "hellskitchenmixins.refmap.json",
   "mixins": [
     "create.MBasinRecipe",
+    "create.MMixingRecipe",
     "kube.MProcessingRecipeJS",
     "kube.MProcessingRecipeSchema"
   ],
