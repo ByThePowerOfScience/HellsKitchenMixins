@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "btpos.mcmods.hellskitchenmixins.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "hellskitchenmixins.refmap.json",
+  "mixins": [
+    "create.MBasinRecipe"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
