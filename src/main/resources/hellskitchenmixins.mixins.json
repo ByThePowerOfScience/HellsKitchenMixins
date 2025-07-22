@@ -4,11 +4,11 @@
   "package": "btpos.mcmods.hellskitchenmixins.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "hellskitchenmixins.refmap.json",
+  "plugin": "btpos.mcmods.hellskitchenmixins.HellsKitchenMixinConfig",
   "mixins": [
     "create.MBasinRecipe",
     "create.MMixingRecipe",
-    "kube.MProcessingRecipeJS",
-    "kube.MProcessingRecipeSchema"
+    "kube.MProcessingRecipeJS"
   ],
   "client": [
   ],
