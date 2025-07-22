@@ -4,8 +4,8 @@ import dev.latvian.mods.kubejs.create.ProcessingRecipeSchema.ProcessingRecipeJS;
 import dev.latvian.mods.kubejs.recipe.RecipeJS;
 import org.spongepowered.asm.mixin.Mixin;
 
-import static btpos.mcmods.hellskitchenmixins.api.kube.ProcessingRecipeKeys.MAX_SPEED;
-import static btpos.mcmods.hellskitchenmixins.api.kube.ProcessingRecipeKeys.MIN_SPEED;
+import static btpos.mcmods.hellskitchenmixins.impl.kube.ProcessingRecipeKeys.MAX_SPEED;
+import static btpos.mcmods.hellskitchenmixins.impl.kube.ProcessingRecipeKeys.MIN_SPEED;
 
 /**
  * @see btpos.mcmods.hellskitchenmixins.asm.transformers.kubecreate.TProcessingRecipeSchema

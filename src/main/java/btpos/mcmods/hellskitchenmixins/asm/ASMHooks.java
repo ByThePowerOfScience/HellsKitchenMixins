@@ -7,8 +7,8 @@ import dev.latvian.mods.kubejs.recipe.schema.RecipeSchema;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
-import static btpos.mcmods.hellskitchenmixins.api.kube.ProcessingRecipeKeys.MAX_SPEED;
-import static btpos.mcmods.hellskitchenmixins.api.kube.ProcessingRecipeKeys.MIN_SPEED;
+import static btpos.mcmods.hellskitchenmixins.impl.kube.ProcessingRecipeKeys.MAX_SPEED;
+import static btpos.mcmods.hellskitchenmixins.impl.kube.ProcessingRecipeKeys.MIN_SPEED;
 
 public final class ASMHooks {
     @SuppressWarnings("unused")
