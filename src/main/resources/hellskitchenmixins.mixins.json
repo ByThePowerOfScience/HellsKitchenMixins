@@ -5,7 +5,9 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "hellskitchenmixins.refmap.json",
   "mixins": [
-    "create.MBasinRecipe"
+    "create.MBasinRecipe",
+    "kube.MProcessingRecipeJS",
+    "kube.MProcessingRecipeSchema"
   ],
   "client": [
   ],
