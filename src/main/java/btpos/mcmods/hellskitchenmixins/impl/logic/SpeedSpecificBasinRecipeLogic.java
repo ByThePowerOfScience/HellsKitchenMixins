@@ -20,7 +20,7 @@ public final class SpeedSpecificBasinRecipeLogic {
         if (level == null)
             return true; // pass
         
-        BlockEntity ent = level.getBlockEntity(basin.getBlockPos().above());
+        BlockEntity ent = level.getBlockEntity(basin.getBlockPos().above(2));
         if (!(ent instanceof KineticBlockEntity kbe)) {
             return true; // pass
         }

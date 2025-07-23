@@ -1,16 +1,22 @@
 package btpos.mcmods.hellskitchenmixins.asm;
 
-import btpos.mcmods.hellskitchenmixins.asm.transformers.kubecreate.TProcessingRecipeSchema;
+import btpos.mcmods.hellskitchenmixins.asm.util.ASMFileWriter;
 import com.mojang.logging.LogUtils;
+import net.minecraft.FileUtil;
+import org.apache.commons.io.FileUtils;
 import org.objectweb.asm.tree.ClassNode;
 import org.slf4j.Logger;
 import org.spongepowered.asm.service.IClassBytecodeProvider;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+
 public class Transformers {
     public static final Logger LOGGER = LogUtils.getLogger();
     
+    
     private static IClassTransformer[] transformersBurnAfterRead = new IClassTransformer[] {
-            new TProcessingRecipeSchema()
     };
     
     public static void runTransformers(IClassBytecodeProvider bytecodeProvider) {
@@ -19,8 +25,8 @@ public class Transformers {
             return;
         }
         LOGGER.info("Applying class transformers.");
-        for (var it : transformersBurnAfterRead) {
-            for (var req : it.getTargets()) {
+        for (IClassTransformer it : transformersBurnAfterRead) {
+            for (String req : it.getTargets()) {
                 ClassNode node;
                 try {
                     node = bytecodeProvider.getClassNode(req);
@@ -30,10 +36,12 @@ public class Transformers {
                 }
                 if (it.transform(node)) {
                     LOGGER.info("Transformer \"{}\" successfully transformed class \"{}\".", it.getClass().getSimpleName(), req);
+                    ASMFileWriter.printClass(node);
                 } else {
-                    LOGGER.warn("Transformer \"{}\" failed to transform class \"{}\". Skipping.", it.getClass().getSimpleName(), req);
+                    throw new RuntimeException("Transformer \"" + it.getClass().getName() + "\" failed to transform class \"" + req + "\".");
                 }
             }
+            
         }
         LOGGER.info("Finished applying class transformers.");
         transformersBurnAfterRead = null;

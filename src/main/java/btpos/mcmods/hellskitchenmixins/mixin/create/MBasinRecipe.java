@@ -23,16 +23,16 @@ abstract class MBasinRecipe extends ProcessingRecipe<Container> implements ISpee
         super(typeInfo, params);
     }
     
-    private int hellskitchen$minSpeed = 0;
-    private int hellskitchen$maxSpeed = 0;
+    private float hellskitchen$minSpeed = 0;
+    private float hellskitchen$maxSpeed = 0;
     
     @ModifyReturnValue(
             method="apply(Lcom/simibubi/create/content/processing/basin/BasinBlockEntity;Lnet/minecraft/world/item/crafting/Recipe;Z)Z",
             at=@At("RETURN")
     )
     private static boolean checkRPMRecipes(boolean original, @Local(argsOnly=true) BasinBlockEntity basin, @Local(argsOnly=true) Recipe<?> recipe) {
-        if (recipe instanceof BasinRecipe bsr && !SpeedSpecificBasinRecipeLogic.checkBasinRecipe(basin, ((ISpeedSpecificBasinRecipe) bsr))) {
-            return false;
+        if (recipe instanceof BasinRecipe bsr) {
+            return original && SpeedSpecificBasinRecipeLogic.checkBasinRecipe(basin, ((ISpeedSpecificBasinRecipe) bsr));
         }
         return original;
     }
@@ -40,8 +40,8 @@ abstract class MBasinRecipe extends ProcessingRecipe<Container> implements ISpee
     @Override
     public void readAdditional(JsonObject json) {
         super.readAdditional(json);
-        this.hellskitchen$minSpeed = GsonHelper.getAsInt(json, "min_speed", 0);
-        this.hellskitchen$maxSpeed = GsonHelper.getAsInt(json, "max_speed", 256);
+        this.hellskitchen$minSpeed = GsonHelper.getAsFloat(json, "min_speed", 0f);
+        this.hellskitchen$maxSpeed = GsonHelper.getAsFloat(json, "max_speed", 256f);
     }
     
     @Override

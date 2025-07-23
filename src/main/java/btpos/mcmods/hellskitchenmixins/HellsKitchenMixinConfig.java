@@ -16,7 +16,7 @@ import java.util.Set;
 
 public class HellsKitchenMixinConfig implements IMixinConfigPlugin {
     public HellsKitchenMixinConfig() {
-        Transformers.runTransformers(MixinService.getService().getBytecodeProvider());
+//        Transformers.runTransformers(MixinService.getService().getBytecodeProvider());
     }
     
     
